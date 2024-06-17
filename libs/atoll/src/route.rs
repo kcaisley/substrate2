@@ -347,7 +347,7 @@ impl Router for GreedyRouter {
     }
 }
 
-/// An type capable of drawing vias.
+/// A type capable of drawing vias.
 pub trait ViaMaker<PDK: Pdk>: Send + Sync {
     /// Draws a via from the given track coordinate to the layer below.
     fn draw_via(&self, ctx: PdkContext<PDK>, track_coord: TrackCoord) -> Vec<Shape>;

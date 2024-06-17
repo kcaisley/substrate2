@@ -24,8 +24,8 @@ We do this by implementing the [`ExportsNestedData`](https://api.substratelabs.i
 ### Nested views
 
 Essentially, the only requirement for a struct to be used as nested data is that is has a **nested view**.
-A nested view describes how the data changes as it is nested in new cells. For example, a [`Node`](https://api.substratelabs.io/substrate/io/struct.Node.html) 
-in one cell becomes a [`NestedNode`](https://api.substratelabs.io/substrate/io/struct.NestedNode.html) 
+A nested view describes how the data changes as it is nested in new cells. For example, a [`Node`](https://api.substratelabs.io/substrate/io/schematic/struct.Node.html) 
+in one cell becomes a [`NestedNode`](https://api.substratelabs.io/substrate/io/schematic/struct.NestedNode.html) 
 when that cell is instantiated within another cell, storing the path to itself from the top cell.
 
 Generally, you should not need to directly create your own nested views as `#[derive(NestedData)]` will do 
@@ -45,7 +45,7 @@ However, we don't recommend you do this unless you know what you're doing since 
 
 :::warning
 
-Be careful when implementing `HasNestedView` yourself, since propagating a node without nesting it correct may cause issues when trying to probe it or allow you to do incorrect things like try to connect to a node in a nested instance. Generally speaking, you should always nest fields that have a nested view.
+Be careful when implementing `HasNestedView` yourself. Propagating a node without nesting it correctly may cause issues when trying to probe it, or allow incorrect operations like trying to connect to a node within a nested instance. Generally speaking, you should always nest fields that have a nested view.
 
 :::
 
@@ -70,7 +70,7 @@ Let's look at what each part of the implementation is doing.
 You may have noticed that `cell.instantiate(...)` returns an 
 [`Instance`](https://api.substratelabs.io/substrate/schematic/struct.Instance.html). We define **instances** as specific instantiations of an underlying **cell**, or a template for the contents of the instance. The `fn schematic(...)` that we are implementing is generating a cell, and our calls to `cell.instantiate(...)` are running other cell generators then instantiating them as an instance that we can connect to other instances.
 
-This distinction is important since one we generate the underlying cell, we can create as many instances as we want without needing to regenerate the underlying cell. The instances will simply point to the cell that has already been generated, and we can access contents of the underlying cell using functions like [`Instance::try_data`](https://api.substratelabs.io/substrate/schematic/struct.Instance.html#method.try_data) and [`Instance::block`](https://api.substratelabs.io/substrate/schematic/struct.Instance.html#method.block).
+This distinction is important since once we generate the underlying cell, we can create as many instances as we want without needing to regenerate the underlying cell. The instances will simply point to the cell that has already been generated, and we can access contents of the underlying cell using functions like [`Instance::try_data`](https://api.substratelabs.io/substrate/schematic/struct.Instance.html#method.try_data) and [`Instance::block`](https://api.substratelabs.io/substrate/schematic/struct.Instance.html#method.block).
 
 :::
 
@@ -110,8 +110,8 @@ retroactively take the failed cell out of the schematic. That is, we cannot do s
 
 <CodeSnippet language="rust" snippet="vdivider-instantiate-blocking-bad">{Core}</CodeSnippet>
 
-Even though it looks like we succesfully recovered from an error, the error was
-already been pushed into the schematic via `cell.instantiate_blocking(...)`. 
+Even though it looks like we successfully recovered from an error, the error was
+already pushed into the schematic via `cell.instantiate_blocking(...)`. 
 The above methods only work if we want to propagate errors.
 If you want to recover from errors, you should use the generate/add workflow outlined next.
 :::

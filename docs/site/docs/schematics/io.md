@@ -59,7 +59,7 @@ Similarly, if we wanted to create an `SramDriverIo` that drives the input signal
 Since IO structs only define the properties of an interface, a separate struct is needed to store 
 connectivity data for the signals and buses defined by the IO struct. This struct is called a 
 **bundle** and is associated with an IO struct via the 
-[SchematicType](https://api.substratelabs.io/substrate/io/trait.SchematicType.html) trait that 
+[SchematicType](https://api.substratelabs.io/substrate/io/schematic/trait.HardwareType.html) trait that 
 all IOs must implement.
 
 A bundle essentially just stores what each port in the IO is connected to and is created when the schematic type described by an IO struct is instantiated. In the case of the `VdividerIo` given before, the `#[derive(Io)]` macro automatically generates an appropriate schematic type called `VdividerIoSchematic`:
@@ -76,7 +76,7 @@ While IO structs describe the type of an interface, bundles describe the data of
 
 ## Connections
 
-Substrate encodes whether two bundles can be connected using the [`Connect`](https://api.substratelabs.io/substrate/io/trait.Connect.html) marker trait.
+Substrate encodes whether two bundles can be connected using the [`Connect`](https://api.substratelabs.io/substrate/io/schematic/trait.Connect.html) marker trait.
 
 Connections are made between two bundles by flattening bundles into an array of constituent wires and connecting these wires in order. As such, only bundles of the same type or derived types can be connected by default since Substrate cannot make any assumptions on the ordering of wires in different bundle types.
 

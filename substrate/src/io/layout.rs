@@ -1,4 +1,4 @@
-//! Traits and types for schematic IOs.
+//! Traits and types for layout IOs.
 
 use crate::error::Result;
 use crate::io::{FlatLen, Flatten, HasNameTree, NameBuf, NameFragment, NameTree, Signal};

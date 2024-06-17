@@ -689,7 +689,7 @@ impl Client {
 
     /// Spawns a new thread to generate the desired value asynchronously.
     ///
-    /// If the provided handler returns a error, stores an [`Arc`]ed error in the handle.
+    /// If the provided handler returns an error, stores an [`Arc`]ed error in the handle.
     fn spawn_handler<V: Send + Sync + Any>(
         self,
         handle: CacheHandleInner<V>,

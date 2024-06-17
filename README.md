@@ -47,7 +47,7 @@ just test
 from the root of the Substrate repository.
 
 Most tests for Substrate can be found in `substrate/src/tests`. These include a mix of unit tests
-and integration tests, but may break the abstraction barrier as they a part of the `substrate` crate.
+and integration tests, but may break the abstraction barrier as they are part of the `substrate` crate.
 
 Substrate integration tests can be found in the `tests` crate.
 These tests double as examples of how to use Substrate.

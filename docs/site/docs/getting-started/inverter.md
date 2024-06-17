@@ -171,7 +171,7 @@ Here's our testbench setup:
 
 <CodeSnippet language="rust" title="src/tb.rs" snippet="schematic">{InverterTb}</CodeSnippet>
 
-We create two Spectre-specific `Vsource`s (one for VDD, the other as an input stimulus).
+We create two Ngspice-specific `Vsource`s (one for VDD, the other as an input stimulus).
 We also instantiate our inverter and connect everything up.
 The `cell.signal(...)` calls create intermediate nodes.
 Creating them isn't strictly necessary (we could connect `inv.io().vdd` directly to `vddsrc.io().p`,
